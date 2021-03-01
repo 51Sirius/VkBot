@@ -9,8 +9,8 @@ long_poll = VkLongPoll(vk_session)
 def write_msg(user_id, message):
     try:
         vk_session.method('messages.send', {'user_id': user_id, 'message': message})
-    except:
-        print('Trouble')
+    except Exception as exc:
+        print(exc)
 
 
 for event in long_poll.listen():
