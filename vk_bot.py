@@ -5,7 +5,8 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 
 
 class VkBot:
-    def __init__(self, user_id, message):
+    def __init__(self, user_id, message, session):
+        self.session = session
         self.message = message
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id()
@@ -35,3 +36,10 @@ class VkBot:
 
     def command(self):
         pass
+
+    def write_msg(self, message):
+        random_id = vk_api.utils.get_random_id()
+        try:
+            self.session.method('messages.send', {'user_id': self._USER_ID, 'message': message, "random_id": random_id})
+        except Exception as exc:
+            print(exc)
