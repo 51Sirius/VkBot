@@ -10,7 +10,7 @@ class VkBot:
         self.message = message
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id()
-        self._COMMANDS = ["", "", ""]
+        self._COMMANDS = ["Привет", "Да хочу", "Как дела?"]
         print(f'Create bot for {self._USERNAME}')
 
     def _get_user_name_from_vk_id(self):
@@ -35,7 +35,12 @@ class VkBot:
         return result
 
     def command(self):
-        pass
+        if self.message == self._COMMANDS[0]:
+            pass
+        elif self.message == self._COMMANDS[1]:
+            pass
+        elif self.message == self._COMMANDS[2]:
+            pass
 
     def write_msg(self, message):
         random_id = vk_api.utils.get_random_id()
