@@ -3,6 +3,7 @@ import requests
 import vk_api
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from keyboards.key_1 import *
+import parser_space
 
 
 class VkBot:
@@ -11,7 +12,7 @@ class VkBot:
         self.message = message
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id()
-        self._COMMANDS = ["Привет!"]
+        self._COMMANDS = ["Привет!","Да, хочу"]
         print(f'Create bot for {self._USERNAME}')
 
     def _get_user_name_from_vk_id(self):
@@ -38,9 +39,10 @@ class VkBot:
     def command(self):
         if self.message == self._COMMANDS[0]:
             self.write_msg('Привет рад тебя видеть. Не хочешь немного фактов о космосе?',
-                           create_first_keyboard('Да', VkKeyboardColor.SECONDARY))
+                           create_first_keyboard('Да, хочу', VkKeyboardColor.POSITIVE))
         elif self.message == self._COMMANDS[1]:
-            pass
+            self.write_msg('Подождите секундочку...')
+            self.write_msg(parser_space.parsing_facts())
         elif self.message == self._COMMANDS[2]:
             pass
 
