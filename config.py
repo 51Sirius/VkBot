@@ -1,2 +1,1 @@
-LOGIN = "Your number"
-PASSWORD = "Your password"
+TOKEN = "Your Token"
