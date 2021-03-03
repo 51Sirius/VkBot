@@ -1,7 +1,8 @@
 import bs4
 import requests
 import vk_api
-from vk_api.longpoll import VkLongPoll, VkEventType
+from vk_api.keyboard import VkKeyboard, VkKeyboardColor
+from keyboards.key_1 import *
 
 
 class VkBot:
@@ -10,7 +11,7 @@ class VkBot:
         self.message = message
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id()
-        self._COMMANDS = ["Привет", "Да хочу", "Как дела?"]
+        self._COMMANDS = ["Привет!"]
         print(f'Create bot for {self._USERNAME}')
 
     def _get_user_name_from_vk_id(self):
@@ -36,15 +37,22 @@ class VkBot:
 
     def command(self):
         if self.message == self._COMMANDS[0]:
-            pass
+            self.write_msg('Привет рад тебя видеть. Не хочешь немного фактов о космосе?',
+                           create_first_keyboard('Да', VkKeyboardColor.SECONDARY))
         elif self.message == self._COMMANDS[1]:
             pass
         elif self.message == self._COMMANDS[2]:
             pass
 
-    def write_msg(self, message):
+    def write_msg(self, message, keyboard=None):
         random_id = vk_api.utils.get_random_id()
         try:
-            self.session.method('messages.send', {'user_id': self._USER_ID, 'message': message, "random_id": random_id})
+            if keyboard is not None:
+                self.session.method('messages.send',
+                                    {'user_id': self._USER_ID, 'message': message, "random_id": random_id,
+                                     'keyboard': keyboard.get_keyboard()})
+            else:
+                self.session.method('messages.send',
+                                    {'user_id': self._USER_ID, 'message': message, "random_id": random_id})
         except Exception as exc:
             print(exc)
