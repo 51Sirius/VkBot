@@ -9,7 +9,11 @@ def parsing_facts():
     bs = bs.findAll('ul')[1:18]
     result = []
     for i in list(bs):
-        pass
-        print('132')
+        i = str(i)
+        list_line = i.split('\n')
+        h = 0
+        for j in list_line:
+            result.append(i.split('\n'))
 
 
+parsing_facts()
