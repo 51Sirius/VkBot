@@ -12,7 +12,7 @@ class VkBot:
         self.message = message
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id()
-        self._COMMANDS = ["Привет!","Да, хочу"]
+        self._COMMANDS = ["Привет!", "Да, хочу", 'Ещё!', "Не, я и так крут!"]
         print(f'Create bot for {self._USERNAME}')
 
     def _get_user_name_from_vk_id(self):
@@ -39,11 +39,13 @@ class VkBot:
     def command(self):
         if self.message == self._COMMANDS[0]:
             self.write_msg('Привет рад тебя видеть. Не хочешь немного фактов о космосе?',
-                           create_first_keyboard('Да, хочу', VkKeyboardColor.POSITIVE))
+                           create_yes_or_no(self._COMMANDS[1],self._COMMANDS[3]))
         elif self.message == self._COMMANDS[1]:
             self.write_msg('Подождите секундочку...')
             self.write_msg(parser_space.parsing_facts())
         elif self.message == self._COMMANDS[2]:
+            pass
+        elif self.message == self._COMMANDS[3]:
             pass
 
     def write_msg(self, message, keyboard=None):
