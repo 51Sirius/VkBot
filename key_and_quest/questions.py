@@ -20,5 +20,4 @@ quest_list = {
 
 def give_question():
     r = rand.randint(0, 2)
-    print(r)
     return quest_list[r][0], quest_list[r][1]

@@ -1,3 +1,4 @@
+import random
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 
 
@@ -23,5 +24,28 @@ def create_menu():
     keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
     return keyboard
 
+
+def generate_answers_button(answers: list):
+    keyboard = VkKeyboard(one_time=True)
+    true_answer = answers[0]
+    false_answers = answers[1:]
+    r = random.randint(0, len(answers))
+    h = 0
+    for i in range(0, len(answers), 2):
+        if i == r:
+            keyboard.add_button(true_answer, color=VkKeyboardColor.PRIMARY)
+            keyboard.add_button(false_answers[h], color=VkKeyboardColor.PRIMARY)
+            h += 1
+        else:
+            if i+1 == r:
+                keyboard.add_button(false_answers[h], color=VkKeyboardColor.PRIMARY)
+                keyboard.add_button(true_answer, color=VkKeyboardColor.PRIMARY)
+                h += 1
+            else:
+                keyboard.add_button(false_answers[h], color=VkKeyboardColor.PRIMARY)
+                keyboard.add_button(false_answers[h+1], color=VkKeyboardColor.PRIMARY)
+                h += 2
+        keyboard.add_line()
+    return keyboard
 
 
