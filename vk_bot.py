@@ -2,7 +2,7 @@ import bs4
 import requests
 import vk_api
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
-from keyboards.key_1 import *
+from key_and_quest.key_1 import *
 import parser_space
 
 
