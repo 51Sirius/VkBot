@@ -22,3 +22,6 @@ def create_menu():
     keyboard.add_line()
     keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
     return keyboard
+
+
+
