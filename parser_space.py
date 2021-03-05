@@ -11,9 +11,10 @@ def parsing_facts():
     for i in list(bs):
         i = str(i)
         list_line = i.split('\n')
+        del list_line[0]
+        del list_line[-1]
         h = 0
         for j in list_line:
-            result.append(i.split('\n'))
-
-
-parsing_facts()
+            result.append(j[4:-5])
+    r = rand.randint(0,len(result))
+    return result[r]
