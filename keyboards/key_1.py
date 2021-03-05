@@ -13,3 +13,12 @@ def create_yes_or_no(text_yes, no_text):
     keyboard.add_line()
     keyboard.add_button(no_text, color=VkKeyboardColor.NEGATIVE)
     return keyboard
+
+
+def create_menu():
+    keyboard = VkKeyboard(one_time=True)
+    keyboard.add_button('Факты', color=VkKeyboardColor.PRIMARY)
+    keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
+    keyboard.add_line()
+    keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
+    return keyboard
