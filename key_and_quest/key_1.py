@@ -18,7 +18,7 @@ def create_yes_or_no(text_yes, no_text):
 def create_menu():
     keyboard = VkKeyboard(one_time=True)
     keyboard.add_button('Факты', color=VkKeyboardColor.PRIMARY)
-    keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
+    keyboard.add_button('Викторина', color=VkKeyboardColor.PRIMARY)
     keyboard.add_line()
     keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
     return keyboard
