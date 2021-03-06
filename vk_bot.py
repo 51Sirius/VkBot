@@ -47,7 +47,7 @@ class VkBot:
             self.write_msg('\nЕще фактов?',create_yes_or_no(self._COMMANDS[1], self._COMMANDS[4]))
         elif self.message == self._COMMANDS[6]:
             quest, answers = give_question()
-            self.write_msg(quest,)
+            self.write_msg(quest, generate_answers_button(answers))
         elif self.message == self._COMMANDS[4] or self._COMMANDS[3] == self.message:
             self.write_msg('Тогда вот вам навигационное меню.', create_menu())
 

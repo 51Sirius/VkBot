@@ -22,6 +22,9 @@ def create_menu():
     keyboard.add_button('Викторина', color=VkKeyboardColor.PRIMARY)
     keyboard.add_line()
     keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
+    keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
+    keyboard.add_line()
+    keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
     return keyboard
 
 
@@ -46,6 +49,7 @@ def generate_answers_button(answers: list):
                 keyboard.add_button(false_answers[h+1], color=VkKeyboardColor.PRIMARY)
                 h += 2
         keyboard.add_line()
+    keyboard.add_button('Отбой', color=VkKeyboardColor.NEGATIVE)
     return keyboard
 
 

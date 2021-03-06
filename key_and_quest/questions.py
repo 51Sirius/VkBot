@@ -19,5 +19,5 @@ quest_list = {
 
 
 def give_question():
-    r = rand.randint(0, 2)
+    r = rand.randint(0, 1)
     return quest_list[r][0], quest_list[r][1]
