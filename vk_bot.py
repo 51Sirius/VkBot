@@ -55,7 +55,7 @@ class VkBot:
             self.answer = true_answer
             self.wrong_answers = answers[1:]
             return True
-        elif self.message == self._COMMANDS[4] or self._COMMANDS[3] == self.message:
+        elif self.message == self._COMMANDS[4] or self._COMMANDS[3] == self.message or self._COMMANDS[7] == self.message:
             self.write_msg('Тогда вот вам навигационное меню.', create_menu())
         return False
 
@@ -72,8 +72,8 @@ class VkBot:
         except Exception as exc:
             print(exc)
 
-    def answer_session(self):
-        if self.message == self.answer:
-            self.write_msg('Молодец, это был правильный ответ!!!', create_yes_or_no('Еще!', 'Хватит'))
+    def answer_session(self, answer):
+        if self.message == answer:
+            self.write_msg('Молодец, это был правильный ответ!!!', create_yes_or_no('Ещё!', 'Хватит'))
         else:
             self.write_msg('Ну почти', create_yes_or_no('Ещё!', 'Хватит'))

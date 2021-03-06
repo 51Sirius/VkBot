@@ -32,7 +32,7 @@ def generate_answers_button(answers: list):
     keyboard = VkKeyboard(one_time=True)
     true_answer = answers[0]
     false_answers = answers[1:]
-    r = random.randint(0, len(answers))
+    r = random.randint(0, len(answers)-1)
     h = 0
     for i in range(0, len(answers), 2):
         if i == r:
