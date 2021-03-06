@@ -9,6 +9,7 @@ from key_and_quest.questions import give_question
 
 class VkBot:
     def __init__(self, user_id, message, session):
+        self.answer = None
         self.session = session
         self.message = message
         self._USER_ID = user_id
@@ -47,9 +48,13 @@ class VkBot:
             self.write_msg('\nЕще фактов?',create_yes_or_no(self._COMMANDS[1], self._COMMANDS[4]))
         elif self.message == self._COMMANDS[6]:
             quest, answers = give_question()
-            self.write_msg(quest, generate_answers_button(answers))
+            keyboard, true_answer = generate_answers_button(answers)
+            self.write_msg(quest, keyboard)
+            self.answer = true_answer
         elif self.message == self._COMMANDS[4] or self._COMMANDS[3] == self.message:
             self.write_msg('Тогда вот вам навигационное меню.', create_menu())
+        elif self.message == self.answer:
+            self.write_msg('Молодец, это был правильный ответ!!!', create_yes_or_no('Еще', 'Хватит'))
 
     def write_msg(self, message, keyboard=None):
         random_id = vk_api.utils.get_random_id()

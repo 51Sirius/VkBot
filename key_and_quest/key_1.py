@@ -50,6 +50,6 @@ def generate_answers_button(answers: list):
                 h += 2
         keyboard.add_line()
     keyboard.add_button('Отбой', color=VkKeyboardColor.NEGATIVE)
-    return keyboard
+    return keyboard, true_answer
 
 
