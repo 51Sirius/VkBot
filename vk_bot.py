@@ -17,7 +17,7 @@ class VkBot:
         self._USERNAME = self._get_user_name_from_vk_id()
         self._COMMANDS = ["Привет!", "Да, хочу", 'Ещё!', "Не, я и так крут!", "Нет, спасибо", 'Факты', 'Викторина',
                           'Хватит', 'Меню']
-        print(f'Create bot for {self._USERNAME}')
+        print(f'Create bot for {self._USERNAME} / {self._USER_ID}')
 
     def _get_user_name_from_vk_id(self):
         req = requests.get("https://vk.com/id" + str(self._USER_ID))
