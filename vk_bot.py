@@ -16,7 +16,7 @@ class VkBot:
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id()
         self._COMMANDS = ["Привет!", "Да, хочу", 'Ещё!', "Не, я и так крут!", "Нет, спасибо", 'Факты', 'Викторина',
-                          'Хватит']
+                          'Хватит', 'Меню']
         print(f'Create bot for {self._USERNAME}')
 
     def _get_user_name_from_vk_id(self):
@@ -55,7 +55,8 @@ class VkBot:
             self.answer = true_answer
             self.wrong_answers = answers[1:]
             return True
-        elif self.message == self._COMMANDS[4] or self._COMMANDS[3] == self.message or self._COMMANDS[7] == self.message:
+        elif self.message == self._COMMANDS[4] or self._COMMANDS[3] == self.message or self._COMMANDS[
+            7] == self.message or self.message == self._COMMANDS[8]:
             self.write_msg('Тогда вот вам навигационное меню.', create_menu())
         return False
 
@@ -76,4 +77,8 @@ class VkBot:
         if self.message == answer:
             self.write_msg('Молодец, это был правильный ответ!!!', create_yes_or_no('Ещё!', 'Хватит'))
         else:
-            self.write_msg('Ну почти', create_yes_or_no('Ещё!', 'Хватит'))
+            if self.message == 'Отбой':
+                self.message = self._COMMANDS[8]
+                self.command()
+            else:
+                self.write_msg('Ну почти', create_yes_or_no('Ещё!', 'Хватит'))
