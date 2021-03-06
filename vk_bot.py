@@ -10,11 +10,13 @@ from key_and_quest.questions import give_question
 class VkBot:
     def __init__(self, user_id, message, session):
         self.answer = None
+        self.wrong_answers = []
         self.session = session
         self.message = message
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id()
-        self._COMMANDS = ["Привет!", "Да, хочу", 'Ещё!', "Не, я и так крут!", "Нет, спасибо", 'Факты', 'Викторина']
+        self._COMMANDS = ["Привет!", "Да, хочу", 'Ещё!', "Не, я и так крут!", "Нет, спасибо", 'Факты', 'Викторина',
+                          'Хватит']
         print(f'Create bot for {self._USERNAME}')
 
     def _get_user_name_from_vk_id(self):
@@ -41,20 +43,21 @@ class VkBot:
     def command(self):
         if self.message == self._COMMANDS[0] or self.message == 'привет' or self.message == 'Привет':
             self.write_msg('Привет рад тебя видеть. Не хочешь немного фактов о космосе?',
-                           create_yes_or_no(self._COMMANDS[1],self._COMMANDS[3]))
+                           create_yes_or_no(self._COMMANDS[1], self._COMMANDS[3]))
         elif self.message == self._COMMANDS[1] or self.message == self._COMMANDS[5]:
             self.write_msg('Подождите секундочку...')
             self.write_msg(parser_space.parsing_facts())
-            self.write_msg('\nЕще фактов?',create_yes_or_no(self._COMMANDS[1], self._COMMANDS[4]))
-        elif self.message == self._COMMANDS[6]:
+            self.write_msg('\nЕще фактов?', create_yes_or_no(self._COMMANDS[1], self._COMMANDS[4]))
+        elif self.message == self._COMMANDS[6] or self.message == self._COMMANDS[2]:
             quest, answers = give_question()
             keyboard, true_answer = generate_answers_button(answers)
             self.write_msg(quest, keyboard)
             self.answer = true_answer
+            self.wrong_answers = answers[1:]
+            return True
         elif self.message == self._COMMANDS[4] or self._COMMANDS[3] == self.message:
             self.write_msg('Тогда вот вам навигационное меню.', create_menu())
-        elif self.message == self.answer:
-            self.write_msg('Молодец, это был правильный ответ!!!', create_yes_or_no('Еще', 'Хватит'))
+        return False
 
     def write_msg(self, message, keyboard=None):
         random_id = vk_api.utils.get_random_id()
@@ -68,3 +71,9 @@ class VkBot:
                                     {'user_id': self._USER_ID, 'message': message, "random_id": random_id})
         except Exception as exc:
             print(exc)
+
+    def answer_session(self):
+        if self.message == self.answer:
+            self.write_msg('Молодец, это был правильный ответ!!!', create_yes_or_no('Еще!', 'Хватит'))
+        else:
+            self.write_msg('Ну почти', create_yes_or_no('Ещё!', 'Хватит'))

@@ -14,6 +14,8 @@ for event in long_poll.listen():
             message = event.text
             bot = VkBot(event.user_id, message, vk_session)
             try:
-                bot.command()
+                go = bot.command()
+                if go:
+                    bot.answer_session()
             except Exception as exc:
                 print(exc)
