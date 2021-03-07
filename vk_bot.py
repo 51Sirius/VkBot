@@ -9,6 +9,7 @@ from key_and_quest.questions import give_question
 
 class VkBot:
     def __init__(self, user_id, message, session):
+        self.Upload = vk_api.VkUpload(session)
         self.answer = None
         self.wrong_answers = []
         self.session = session
@@ -58,15 +59,24 @@ class VkBot:
         elif self.message == self._COMMANDS[4] or self._COMMANDS[3] == self.message or self._COMMANDS[7] ==\
                 self.message or self.message == self._COMMANDS[8]:
             self.write_msg('Тогда вот вам навигационное меню.', create_menu())
+        elif self._COMMANDS[9] == self.message:
+            constellation = parser_space.give_space()
+            self.write_msg(constellation, create_yes_or_no('Еще созвездий', self._COMMANDS[7]), constellation['url'])
         return False
 
-    def write_msg(self, message, keyboard=None):
+    def write_msg(self, message, keyboard=None, image=None):
         random_id = vk_api.utils.get_random_id()
         try:
             if keyboard is not None:
-                self.session.method('messages.send',
-                                    {'user_id': self._USER_ID, 'message': message, "random_id": random_id,
-                                     'keyboard': keyboard.get_keyboard()})
+                if image is not None:
+                    self.Upload.photo_messages(image)
+                    self.session.method('messages.send',
+                                        {'user_id': self._USER_ID, 'message': message, "random_id": random_id,
+                                         'keyboard': keyboard.get_keyboard()})
+                else:
+                    self.session.method('messages.send',
+                                        {'user_id': self._USER_ID, 'message': message, "random_id": random_id,
+                                         'keyboard': keyboard.get_keyboard()})
             else:
                 self.session.method('messages.send',
                                     {'user_id': self._USER_ID, 'message': message, "random_id": random_id})
