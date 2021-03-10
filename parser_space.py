@@ -60,7 +60,7 @@ def give_space():
         },
         {
             'name': 'Дракон',
-            'url': 'images\small_beer.jpg'
+            'url': 'images/sozvezdie-cefei.jpg'
         }
     ]
     r = rand.randint(0, len(constellations_list) - 1)
