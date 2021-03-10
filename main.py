@@ -3,7 +3,7 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from vk_bot import VkBot
 import os
 
-vk_session = vk_api.VkApi(os.environ['TOKEN'])
+vk_session = vk_api.VkApi(token=os.environ['TOKEN'])
 long_poll = VkLongPoll(vk_session)
 users_quest = {1: []
                }
