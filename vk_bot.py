@@ -64,7 +64,11 @@ class VkBot:
             constellation = parser_space.give_space()
             self.write_msg(constellation['name'], create_yes_or_no('Еще созвездий', self._COMMANDS[7]),
                            constellation['url'])
+        elif self.message == 'Еще что-то':
+            self.write_msg('Это тестовое поле его лучше пока не трогать)', create_menu())
         return False
+
+
 
     def write_msg(self, message, keyboard=None, image=None):
         random_id = vk_api.utils.get_random_id()

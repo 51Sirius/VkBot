@@ -24,39 +24,39 @@ def give_space():
     constellations_list = [
         {
             'name': 'Малая медведица',
-            'url': 'images\small_beer.jpg'
+            'url': 'images/small_beer.jpg'
         },
         {
             'name': 'Большая медведица',
-            'url': 'images\small_beer.jpg'
+            'url': 'images/small_beer.jpg'
         },
         {
             'name': 'Геркулес',
-            'url': 'images\small_beer.jpg'
+            'url': 'images/small_beer.jpg'
         },
         {
             'name': 'Пегас',
-            'url': 'images\small_beer.jpg'
+            'url': 'images/small_beer.jpg'
         },
         {
             'name': 'Кассиопея',
-            'url': 'images\small_beer.jpg'
+            'url': 'images/small_beer.jpg'
         },
         {
             'name': 'Гидра',
-            'url': 'images\small_beer.jpg'
+            'url': 'images/small_beer.jpg'
         },
         {
             'name': 'Дева',
-            'url': 'images\small_beer.jpg'
+            'url': 'images/small_beer.jpg'
         },
         {
             'name': 'Центавр',
-            'url': 'images\small_beer.jpg'
+            'url': 'images/small_beer.jpg'
         },
         {
             'name': 'Цефей',
-            'url': 'images\small_beer.jpg'
+            'url': 'images/sozvezdie-cefei.jpg'
         },
         {
             'name': 'Дракон',
