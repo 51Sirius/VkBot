@@ -5,6 +5,7 @@ from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from key_and_quest.key_1 import *
 import parser_space
 from key_and_quest.questions import give_question
+from vk_api import VkUpload
 
 
 class VkBot:
@@ -70,14 +71,12 @@ class VkBot:
         try:
             if keyboard is not None:
                 if image is not None:
-                    self.Upload.photo_messages(image, self._USER_ID)
+                    attachments = []
+                    photo_upload = self.Upload.photo_messages(photos=image)[0]
+                    attachments.append('photo{}_{}'.format(photo_upload['owner_id'], photo_upload['id']))
                     self.session.method('messages.send',
                                         {'user_id': self._USER_ID, 'message': message, "random_id": random_id,
-                                         'attachment': "https://sun9-7.userapi.com/impg/GilnEkjtI3z3c4JB9WrOywOfJGEZTUICI4XF-A/2ZkIkqHDZnQ.jpg?size=1920x1344&quality=96&sign=e513f55e0260d60e439010c08c3bb41e&type=album",
-                                         'keyboard': keyboard.get_keyboard()})
-                    self.session.method('messages.send',
-                                        {'user_id': self._USER_ID, 'message': message,
-                                         "random_id": random_id})
+                                         'keyboard': keyboard.get_keyboard(), 'attachment': ','.join(attachments)})
                 else:
                     self.session.method('messages.send',
                                         {'user_id': self._USER_ID, 'message': message, "random_id": random_id,
