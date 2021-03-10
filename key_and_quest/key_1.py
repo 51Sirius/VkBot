@@ -21,7 +21,7 @@ def create_menu():
     keyboard.add_button('Факты', color=VkKeyboardColor.PRIMARY)
     keyboard.add_button('Викторина', color=VkKeyboardColor.PRIMARY)
     keyboard.add_line()
-    keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
+    keyboard.add_button('Созвездия', color=VkKeyboardColor.PRIMARY)
     keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)
     keyboard.add_line()
     keyboard.add_button('Еще что-то', color=VkKeyboardColor.PRIMARY)

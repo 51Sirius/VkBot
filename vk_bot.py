@@ -56,12 +56,13 @@ class VkBot:
             self.answer = true_answer
             self.wrong_answers = answers[1:]
             return True
-        elif self.message == self._COMMANDS[4] or self._COMMANDS[3] == self.message or self._COMMANDS[7] ==\
+        elif self.message == self._COMMANDS[4] or self._COMMANDS[3] == self.message or self._COMMANDS[7] == \
                 self.message or self.message == self._COMMANDS[8]:
             self.write_msg('Тогда вот вам навигационное меню.', create_menu())
-        elif self._COMMANDS[9] == self.message:
+        elif self._COMMANDS[9] == self.message or self.message == 'Еще созвездий':
             constellation = parser_space.give_space()
-            self.write_msg(constellation, create_yes_or_no('Еще созвездий', self._COMMANDS[7]), constellation['url'])
+            self.write_msg(constellation['name'], create_yes_or_no('Еще созвездий', self._COMMANDS[7]),
+                           constellation['url'])
         return False
 
     def write_msg(self, message, keyboard=None, image=None):
@@ -69,10 +70,14 @@ class VkBot:
         try:
             if keyboard is not None:
                 if image is not None:
-                    self.Upload.photo_messages(image)
+                    self.Upload.photo_messages(image, self._USER_ID)
                     self.session.method('messages.send',
                                         {'user_id': self._USER_ID, 'message': message, "random_id": random_id,
+                                         'attachment': "https://sun9-7.userapi.com/impg/GilnEkjtI3z3c4JB9WrOywOfJGEZTUICI4XF-A/2ZkIkqHDZnQ.jpg?size=1920x1344&quality=96&sign=e513f55e0260d60e439010c08c3bb41e&type=album",
                                          'keyboard': keyboard.get_keyboard()})
+                    self.session.method('messages.send',
+                                        {'user_id': self._USER_ID, 'message': message,
+                                         "random_id": random_id})
                 else:
                     self.session.method('messages.send',
                                         {'user_id': self._USER_ID, 'message': message, "random_id": random_id,
