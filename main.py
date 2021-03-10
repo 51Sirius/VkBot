@@ -1,6 +1,5 @@
 import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
-import cfg
 from vk_bot import VkBot
 import os
 
