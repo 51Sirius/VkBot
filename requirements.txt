@@ -25,7 +25,6 @@ jupyter-core==4.6.3
 kiwisolver==1.2.0
 Mako==1.1.4
 MarkupSafe==1.1.1
-matplotlib==3.3.2
 mistune==0.8.4
 more-itertools==8.5.0
 multidict==4.7.6

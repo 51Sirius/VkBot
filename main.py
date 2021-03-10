@@ -2,11 +2,12 @@ import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 import cfg
 from vk_bot import VkBot
+import os
 
-vk_session = vk_api.VkApi(token=cfg.TOKEN)
+vk_session = vk_api.VkApi(os.environ['TOKEN'])
 long_poll = VkLongPoll(vk_session)
 users_quest = {1: []
-}
+               }
 
 for event in long_poll.listen():
     if event.type == VkEventType.MESSAGE_NEW:
