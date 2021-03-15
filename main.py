@@ -1,6 +1,6 @@
 import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
-from vk_bot import VkBot
+from functionsAndClass.vk_bot import VkBot
 import os
 
 vk_session = vk_api.VkApi(token=os.environ['TOKEN'])

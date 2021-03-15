@@ -1,11 +1,9 @@
 import bs4
 import requests
 import vk_api
-from vk_api.keyboard import VkKeyboard, VkKeyboardColor
-from key_and_quest.key_1 import *
+from functionsAndClass.key_1 import *
 import parser_space
-from key_and_quest.questions import give_question
-from vk_api import VkUpload
+from functionsAndClass.questions import give_question
 
 
 class VkBot:
