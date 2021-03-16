@@ -13,7 +13,10 @@ for event in long_poll.listen():
         if event.to_me:
             message = event.text
             last = message
-            bot = VkBot(event.user_id, message, vk_session)
+            try:
+                bot = VkBot(event.user_id, message, vk_session)
+            except:
+                print('Error create bot')
             try:
                 if users_quest.get(event.user_id) is not None:
                     answer = users_quest.get(event.user_id)[0]
