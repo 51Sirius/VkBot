@@ -2,7 +2,7 @@ import bs4
 import requests
 import vk_api
 from functionsAndClass.key_1 import *
-import parser_space
+from functionsAndClass import parser_space
 from functionsAndClass.questions import give_question
 
 
