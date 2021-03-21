@@ -2,11 +2,14 @@ import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 from functionsAndClass.vk_bot import VkBot
 import os
+import sqlite3
 
 vk_session = vk_api.VkApi(token=os.environ['TOKEN'])
 long_poll = VkLongPoll(vk_session)
 users_quest = {1: []
                }
+conn = sqlite3.connect("database.sqlite")
+cursor = conn.cursor()
 
 for event in long_poll.listen():
     if event.type == VkEventType.MESSAGE_NEW:
