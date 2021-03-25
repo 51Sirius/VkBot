@@ -20,8 +20,10 @@ for event in long_poll.listen():
             if cursor.fetchone() is None:
                 cursor.execute("INSERT INTO users(vk_id) VALUES (?)", (event.user_id,))
                 conn.commit()
+            cursor.execute("SELECT quest_amount FROM users WHERE vk_id=?", (event.user_id,))
+            point = cursor.fetchone()[0]
             try:
-                bot = VkBot(event.user_id, message, vk_session)
+                bot = VkBot(event.user_id, message, vk_session, point)
             except:
                 print('Error create bot')
             try:

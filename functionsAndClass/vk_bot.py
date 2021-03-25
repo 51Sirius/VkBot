@@ -7,7 +7,7 @@ from functionsAndClass.questions import give_question
 
 
 class VkBot:
-    def __init__(self, user_id, message, session):
+    def __init__(self, user_id, message, session, point):
         self.Upload = vk_api.VkUpload(session)
         self.answer = None
         self.wrong_answers = []
@@ -18,6 +18,7 @@ class VkBot:
         self._COMMANDS = ["Привет!", "Да, хочу", 'Ещё!', "Не, я и так крут!", "Нет, спасибо", 'Факты', 'Викторина',
                           'Хватит', 'Меню', 'Созвездия']
         print(f'Create bot for {self._USERNAME} / {self._USER_ID}')
+        self.points = point
 
     def _get_user_name_from_vk_id(self):
         req = requests.get("https://vk.com/id" + str(self._USER_ID))
