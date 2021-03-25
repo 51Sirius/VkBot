@@ -16,7 +16,7 @@ class VkBot:
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id()
         self._COMMANDS = ["Привет!", "Да, хочу", 'Ещё!', "Не, я и так крут!", "Нет, спасибо", 'Факты', 'Викторина',
-                          'Хватит', 'Меню', 'Созвездия']
+                          'Хватит', 'Меню', 'Созвездия', 'Аватар']
         print(f'Create bot for {self._USERNAME} / {self._USER_ID}')
         self.points = point
 
@@ -65,6 +65,8 @@ class VkBot:
                            constellation['url'])
         elif self.message == 'Еще что-то':
             self.write_msg('Это тестовое поле его лучше пока не трогать)', create_menu())
+        elif self.message == self._COMMANDS[10]:
+            pass
         return False
 
     def write_msg(self, message, keyboard=None, image=None):
