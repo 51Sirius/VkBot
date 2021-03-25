@@ -92,9 +92,11 @@ class VkBot:
     def answer_session(self, answer):
         if self.message == answer:
             self.write_msg('Молодец, это был правильный ответ!!!', create_yes_or_no('Ещё!', 'Хватит'))
+            return True
         else:
             if self.message == 'Отбой':
                 self.message = self._COMMANDS[8]
                 self.command()
             else:
                 self.write_msg('Ну почти', create_yes_or_no('Ещё!', 'Хватит'))
+            return False

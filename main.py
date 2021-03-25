@@ -16,6 +16,10 @@ for event in long_poll.listen():
         if event.to_me:
             message = event.text
             last = message
+            cursor.execute("SELECT vk_id INTO users WHERE vk_id=?", event.user_id)
+            if cursor.fetchone() is None:
+                cursor.execute("INSERT INTO uesers(vk_id) VALUES ?", event.user_id)
+                conn.commit()
             try:
                 bot = VkBot(event.user_id, message, vk_session)
             except:
@@ -23,8 +27,11 @@ for event in long_poll.listen():
             try:
                 if users_quest.get(event.user_id) is not None:
                     answer = users_quest.get(event.user_id)[0]
-                    bot.answer_session(answer)
+                    cont = bot.answer_session(answer)
                     users_quest.pop(event.user_id)
+                    cursor.execute("SELECT quest_amount INTO users WHERE vk_id=?", event.user_id)
+                    amount = cursor.fetchone()
+                    cursor.execute("UPDATE users SET amount=? WHERE vk_id=?", (amount+1, event.user_id))
                 else:
                     go = bot.command()
                     if go:
