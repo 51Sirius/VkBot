@@ -66,8 +66,6 @@ class VkBot:
             self.write_msg('Это тестовое поле его лучше пока не трогать)', create_menu())
         return False
 
-
-
     def write_msg(self, message, keyboard=None, image=None):
         random_id = vk_api.utils.get_random_id()
         try:
