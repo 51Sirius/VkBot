@@ -28,7 +28,7 @@ def give_space():
         },
         {
             'name': 'Большая медведица',
-            'url': 'images/big_beer.jpg'
+            'url': 'images/sozvezdie-bolshaya-medvedica.jpg'
         },
         {
             'name': 'Геркулес',
@@ -40,19 +40,19 @@ def give_space():
         },
         {
             'name': 'Кассиопея',
-            'url': 'images/small_beer.jpg'
+            'url': 'images/sozvezdie-kassiopei.jpg'
         },
         {
             'name': 'Гидра',
-            'url': 'images/small_beer.jpg'
+            'url': 'images/sozvezdie-gidra.jpg'
         },
         {
             'name': 'Дева',
-            'url': 'images/small_beer.jpg'
+            'url': 'images/sozvezdie-deva.jpg'
         },
         {
             'name': 'Центавр',
-            'url': 'images/small_beer.jpg'
+            'url': 'images/sozvezdie-centavr.jpg'
         },
         {
             'name': 'Цефей',
