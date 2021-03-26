@@ -3,6 +3,7 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from functionsAndClass.vk_bot import VkBot
 import os
 import sqlite3
+import logging
 
 vk_session = vk_api.VkApi(token=os.environ['TOKEN'])
 long_poll = VkLongPoll(vk_session)
@@ -10,22 +11,29 @@ users_quest = {1: []
                }
 conn = sqlite3.connect("database.sqlite")
 cursor = conn.cursor()
+logging.basicConfig(level=logging.INFO, filename=u'logs.log')
 
 for event in long_poll.listen():
     if event.type == VkEventType.MESSAGE_NEW:
         if event.to_me:
-            message = event.text
-            last = message
-            cursor.execute("SELECT vk_id FROM users WHERE vk_id=?", (event.user_id,))
-            if cursor.fetchone() is None:
-                cursor.execute("INSERT INTO users(vk_id) VALUES (?)", (event.user_id,))
-                conn.commit()
-            cursor.execute("SELECT quest_amount FROM users WHERE vk_id=?", (event.user_id,))
-            point = cursor.fetchone()[0]
+            try:
+                message = event.text
+                last = message
+            except Exception as exc:
+                logging.error(exc)
+            try:
+                cursor.execute("SELECT vk_id FROM users WHERE vk_id=?", (event.user_id,))
+                if cursor.fetchone() is None:
+                    cursor.execute("INSERT INTO users(vk_id) VALUES (?)", (event.user_id,))
+                    conn.commit()
+                cursor.execute("SELECT quest_amount FROM users WHERE vk_id=?", (event.user_id,))
+                point = cursor.fetchone()[0]
+            except Exception as exc:
+                logging.error(exc)
             try:
                 bot = VkBot(event.user_id, message, vk_session, point)
-            except:
-                print('Error create bot')
+            except Exception as exc:
+                logging.error(exc)
             try:
                 if users_quest.get(event.user_id) is not None:
                     answer = users_quest.get(event.user_id)[0]
@@ -40,4 +48,4 @@ for event in long_poll.listen():
                     if go:
                         users_quest[event.user_id] = [bot.answer, bot.wrong_answers]
             except Exception as exc:
-                print(exc)
+                logging.error(exc)
