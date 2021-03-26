@@ -66,7 +66,9 @@ class VkBot:
         elif self.message == 'Еще что-то':
             self.write_msg('Это тестовое поле его лучше пока не трогать)', create_menu())
         elif self.message == self._COMMANDS[10]:
-            pass
+            if self.points < 20:
+                rank = 'Новичок'
+
         return False
 
     def write_msg(self, message, keyboard=None, image=None):
