@@ -4,8 +4,9 @@ from functionsAndClass.vk_bot import VkBot
 import os
 import sqlite3
 import logging
+import cfg
 
-vk_session = vk_api.VkApi(token=os.environ['TOKEN'])
+vk_session = vk_api.VkApi(token=cfg.TOKEN)
 long_poll = VkLongPoll(vk_session)
 users_quest = {1: []
                }
@@ -18,7 +19,6 @@ for event in long_poll.listen():
         if event.to_me:
             try:
                 message = event.text
-                last = message
             except Exception as exc:
                 logging.error(exc)
                 message = 'Меню'
@@ -35,9 +35,6 @@ for event in long_poll.listen():
             try:
                 bot = VkBot(event.user_id, message, vk_session, point)
                 logging.info(f'Created bot for {event.user_id}')
-            except Exception as exc:
-                logging.error(exc)
-            try:
                 if users_quest.get(event.user_id) is not None:
                     answer = users_quest.get(event.user_id)[0]
                     cont = bot.answer_session(answer)
