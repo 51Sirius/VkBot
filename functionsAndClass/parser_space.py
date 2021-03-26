@@ -28,15 +28,15 @@ def give_space():
         },
         {
             'name': 'Большая медведица',
-            'url': 'images/small_beer.jpg'
+            'url': 'images/big_beer.jpg'
         },
         {
             'name': 'Геркулес',
-            'url': 'images/small_beer.jpg'
+            'url': 'images/sozvezdie-gerkules.jpg'
         },
         {
             'name': 'Пегас',
-            'url': 'images/small_beer.jpg'
+            'url': 'images/sozvezdie-pegas.jpg'
         },
         {
             'name': 'Кассиопея',
