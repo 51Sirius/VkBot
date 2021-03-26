@@ -21,6 +21,7 @@ for event in long_poll.listen():
                 last = message
             except Exception as exc:
                 logging.error(exc)
+                message = 'Меню'
             try:
                 cursor.execute("SELECT vk_id FROM users WHERE vk_id=?", (event.user_id,))
                 if cursor.fetchone() is None:
@@ -30,8 +31,10 @@ for event in long_poll.listen():
                 point = cursor.fetchone()[0]
             except Exception as exc:
                 logging.error(exc)
+                point = 0
             try:
                 bot = VkBot(event.user_id, message, vk_session, point)
+                logging.info(f'Created bot for {event.user_id}')
             except Exception as exc:
                 logging.error(exc)
             try:
