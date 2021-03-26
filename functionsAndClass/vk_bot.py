@@ -68,7 +68,6 @@ class VkBot:
         elif self.message == self._COMMANDS[10]:
             if self.points < 20:
                 rank = 'Новичок'
-
         return False
 
     def write_msg(self, message, keyboard=None, image=None):
