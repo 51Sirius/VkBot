@@ -70,4 +70,5 @@ def give_space():
 def parsing_avatar(id_vk):
     req = requests.get(f'https://vk.com/id{id_vk}')
     bs: bs4.BeautifulSoup = bs4.BeautifulSoup(req.text, "html.parser")
-    links: bs4.element.Tag = bs.findAll('img', attrs={'class': 'pp_img'})[0].get('src', '-')
+    link: bs4.element.Tag = bs.findAll('img', attrs={'class': 'pp_img'})[0].get('src', '-')  # url -> img 100x100
+    return link
