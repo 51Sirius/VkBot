@@ -75,9 +75,13 @@ class VkBot:
             circle_crop(image_url=f"..\images\avatar{self._USER_ID}.png")
             if self.points < 20:
                 rank = 'Новичок'
-            else:
+            elif 20 <= self.points < 100:
+                rank = 'Звездочет'
+            elif self.points >=100:
+                rank = 'Космонавт'
                 rank = 'Призыватель душ'
-            write_text(self.points, "../images/maim_bg.jpg", rank)
+            write_text(self.points, "../images/maim_bg.jpg", rank, self._USER_ID)
+            paste_image(f"../images/bg{self._USER_ID}.jpg", f"..\images\avatar{self._USER_ID}.png", self._USER_ID)
         return False
 
     def write_msg(self, message, keyboard=None, image=None):

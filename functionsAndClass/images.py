@@ -24,7 +24,7 @@ def circle_crop(size=(100, 100), image_url='..\images\avatar.png'):
     im.save(image_url)
 
 
-def write_text(amount_answers, image_url, rank):
+def write_text(amount_answers, image_url, rank, user_id):
     try:
         image = Image.open(image_url)
         draw = ImageDraw.Draw(image)
@@ -33,7 +33,7 @@ def write_text(amount_answers, image_url, rank):
         font = ImageFont.truetype("arial.ttf", size=18)
         draw.text((140, 30), text_answers, font=font)
         draw.text((140, 60), text_rank, font=font)
-        image.save("../images/bg.jpg")
+        image.save(f"../images/bg{user_id}.jpg")
     except Exception as e:
         print(f"[ERROR] {e}")
 
