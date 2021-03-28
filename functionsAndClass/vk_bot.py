@@ -4,6 +4,7 @@ import vk_api
 from functionsAndClass.key_1 import *
 from functionsAndClass import parser_space
 from functionsAndClass.questions import give_question
+from functionsAndClass.images import *
 
 
 class VkBot:
@@ -68,9 +69,10 @@ class VkBot:
         elif self.message == self._COMMANDS[10]:
             avatar_url = parser_space.parsing_avatar(self._USER_ID)
             p = requests.get(avatar_url)
-            out = open("..\images\avatar.jpg", "wb")
+            out = open("..\images\avatar.png", "wb")
             out.write(p.content)
             out.close()
+            circle_crop()
             if self.points < 20:
                 rank = 'Новичок'
         return False
