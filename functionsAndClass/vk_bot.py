@@ -77,7 +77,7 @@ class VkBot:
                 rank = 'Новичок'
             else:
                 rank = 'Призыватель душ'
-            write_text(self.points, "../images/bg.jpg", rank)
+            write_text(self.points, "../images/maim_bg.jpg", rank)
         return False
 
     def write_msg(self, message, keyboard=None, image=None):

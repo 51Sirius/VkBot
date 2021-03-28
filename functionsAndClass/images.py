@@ -33,6 +33,15 @@ def write_text(amount_answers, image_url, rank):
         font = ImageFont.truetype("arial.ttf", size=18)
         draw.text((140, 30), text_answers, font=font)
         draw.text((140, 60), text_rank, font=font)
-        image.save(image_url)
+        image.save("../images/bg.jpg")
     except Exception as e:
         print(f"[ERROR] {e}")
+
+
+def paste_image(first, second, id_user):
+    im1 = Image.open(first)
+    im2 = Image.open(second)
+    im1.paste(im2, (20, 50))
+    im1.save(f'user{id_user}.png', quality=95)
+    im1.close()
+    im2.close()
