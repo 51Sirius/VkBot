@@ -79,6 +79,7 @@ class VkBot:
                 rank = 'Звездочет'
             elif self.points >=100:
                 rank = 'Космонавт'
+            else:
                 rank = 'Призыватель душ'
             write_text(self.points, "../images/maim_bg.jpg", rank, self._USER_ID)
             paste_image(f"../images/bg{self._USER_ID}.jpg", f"..\images\avatar{self._USER_ID}.png", self._USER_ID)
