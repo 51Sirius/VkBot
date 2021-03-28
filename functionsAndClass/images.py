@@ -1,4 +1,4 @@
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 
 def prepare_mask(size, antialias=2):
@@ -21,4 +21,8 @@ def circle_crop(size=(100, 100), image_url='..\images\avatar.png'):
     im = Image.open(image_url)
     im = crop(im, size)
     im.putalpha(prepare_mask(size, 4))
-    im.save('avatar.png')
+    im.save(image_url)
+
+
+def write_text()
+    pass
