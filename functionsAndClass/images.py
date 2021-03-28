@@ -24,5 +24,15 @@ def circle_crop(size=(100, 100), image_url='..\images\avatar.png'):
     im.save(image_url)
 
 
-def write_text()
-    pass
+def write_text(amount_answers, image_url, rank):
+    try:
+        image = Image.open(image_url)
+        draw = ImageDraw.Draw(image)
+        text_answers = f"Количество верных ответов: {amount_answers}"
+        text_rank = f"Ваше звание: {rank}"
+        font = ImageFont.truetype("arial.ttf", size=18)
+        draw.text((140, 30), text_answers, font=font)
+        draw.text((140, 60), text_rank, font=font)
+        image.save(image_url)
+    except Exception as e:
+        print(f"[ERROR] {e}")

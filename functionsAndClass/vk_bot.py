@@ -75,6 +75,9 @@ class VkBot:
             circle_crop(image_url=f"..\images\avatar{self._USER_ID}.png")
             if self.points < 20:
                 rank = 'Новичок'
+            else:
+                rank = 'Призыватель душ'
+            write_text(self.points, "../images/bg.jpg", rank)
         return False
 
     def write_msg(self, message, keyboard=None, image=None):
