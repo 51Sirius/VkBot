@@ -6,7 +6,7 @@ import sqlite3
 import logging
 import cfg
 
-vk_session = vk_api.VkApi(token=cfg.TOKEN)
+vk_session = vk_api.VkApi(token=cfg.SECOND_TOKEN)
 long_poll = VkLongPoll(vk_session)
 users_quest = {1: []
                }

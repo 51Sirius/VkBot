@@ -1,4 +1,5 @@
 from PIL import Image, ImageDraw, ImageFont
+import requests
 
 
 def prepare_mask(size, antialias=2):
@@ -33,7 +34,7 @@ def write_text(amount_answers, image_url, rank, user_id):
         font = ImageFont.truetype("arial.ttf", size=18)
         draw.text((140, 30), text_answers, font=font)
         draw.text((140, 60), text_rank, font=font)
-        image.save(f"../images/bg{user_id}.jpg")
+        image.save(f"images\bg{user_id}.jpg")
     except Exception as e:
         print(f"[ERROR] {e}")
 
@@ -45,3 +46,9 @@ def paste_image(first, second, id_user):
     im1.save(f'user{id_user}.png', quality=95)
     im1.close()
     im2.close()
+
+
+def save_image(url, id_user):
+    resp = requests.get(url, stream=True).raw
+    img = Image.open(resp)
+    img.save(f'images\\avatar{id_user}.png', 'png')

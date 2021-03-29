@@ -68,11 +68,8 @@ class VkBot:
             self.write_msg('Это тестовое поле его лучше пока не трогать)', create_menu())
         elif self.message == self._COMMANDS[10]:
             avatar_url = parser_space.parsing_avatar(self._USER_ID)
-            p = requests.get(avatar_url)
-            out = open(f"..\images\avatar{self._USER_ID}.png", "wb")
-            out.write(p.content)
-            out.close()
-            circle_crop(image_url=f"..\images\avatar{self._USER_ID}.png")
+            save_image(avatar_url, self._USER_ID)
+            circle_crop(image_url=f'images\\avatar{self._USER_ID}.png')
             if self.points < 20:
                 rank = 'Новичок'
             elif 20 <= self.points < 100:
@@ -81,8 +78,8 @@ class VkBot:
                 rank = 'Космонавт'
             else:
                 rank = 'Призыватель душ'
-            write_text(self.points, "../images/maim_bg.jpg", rank, self._USER_ID)
-            paste_image(f"../images/bg{self._USER_ID}.jpg", f"..\images\avatar{self._USER_ID}.png", self._USER_ID)
+            write_text(self.points, "images\maim_bg.jpg", rank, self._USER_ID)
+            paste_image(f"images/bg{self._USER_ID}.jpg", f'images\\avatar{self._USER_ID}.png', self._USER_ID)
         return False
 
     def write_msg(self, message, keyboard=None, image=None):
