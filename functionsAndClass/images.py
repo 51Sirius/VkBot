@@ -18,7 +18,7 @@ def crop(im, s):
     return im.resize(s, Image.ANTIALIAS)
 
 
-def circle_crop(size=(100, 100), image_url='..\images\avatar.png'):
+def circle_crop(size=(100, 100), image_url='..\users-image\avatar.png'):
     im = Image.open(image_url)
     im = crop(im, size)
     im.putalpha(prepare_mask(size, 4))
@@ -29,12 +29,12 @@ def write_text(amount_answers, image_url, rank, user_id):
     try:
         image = Image.open(image_url)
         draw = ImageDraw.Draw(image)
-        text_answers = f"Количество верных ответов: {amount_answers}"
-        text_rank = f"Ваше звание: {rank}"
-        font = ImageFont.truetype("arial.ttf", size=18)
+        text_answers = f"Кол-во ответов: {amount_answers}"
+        text_rank = f"Звание: {rank}"
+        font = ImageFont.truetype("arial.ttf", size=14)
         draw.text((140, 30), text_answers, font=font)
         draw.text((140, 60), text_rank, font=font)
-        image.save(f"images\bg{user_id}.jpg")
+        image.save(f"users-image\\bg{user_id}.jpg")
     except Exception as e:
         print(f"[ERROR] {e}")
 
@@ -51,4 +51,4 @@ def paste_image(first, second, id_user):
 def save_image(url, id_user):
     resp = requests.get(url, stream=True).raw
     img = Image.open(resp)
-    img.save(f'images\\avatar{id_user}.png', 'png')
+    img.save(f'users-image\\avatar{id_user}.png', 'png')
