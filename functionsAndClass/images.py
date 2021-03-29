@@ -18,7 +18,7 @@ def crop(im, s):
     return im.resize(s, Image.ANTIALIAS)
 
 
-def circle_crop(size=(100, 100), image_url='..\users-image\avatar.png'):
+def circle_crop(size=(100, 100), image_url=f'users-image\\avatar.png'):
     im = Image.open(image_url)
     im = crop(im, size)
     im.putalpha(prepare_mask(size, 4))
@@ -43,7 +43,7 @@ def paste_image(first, second, id_user):
     im1 = Image.open(first)
     im2 = Image.open(second)
     im1.paste(im2, (20, 50))
-    im1.save(f'user{id_user}.png', quality=95)
+    im1.save(f'users-image\\user{id_user}.jpg', quality=75)
     im1.close()
     im2.close()
 
@@ -51,4 +51,4 @@ def paste_image(first, second, id_user):
 def save_image(url, id_user):
     resp = requests.get(url, stream=True).raw
     img = Image.open(resp)
-    img.save(f'users-image\\avatar{id_user}.png', 'png')
+    img.save(f'users-image\\avatar{id_user}.jpg', 'jpeg')
