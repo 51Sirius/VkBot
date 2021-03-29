@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 cfg.py
+database.sqlite
+users-image
