@@ -77,10 +77,10 @@ class VkBot:
                 rank = 'Космонавт'
             else:
                 rank = 'Призыватель душ'
-            write_text(self.points, "users-image\\bg.jpg", rank, self._USER_ID)
-            paste_image(f"users-image\\bg{self._USER_ID}.jpg", f'users-image\\avatar{self._USER_ID}.jpg', self._USER_ID)
+            write_text(self.points, "users-image/bg.jpg", rank, self._USER_ID)
+            paste_image(f"users-image/bg{self._USER_ID}.jpg", f'users-image/avatar{self._USER_ID}.jpg', self._USER_ID)
             self.write_msg(f'Ваш ранк: {rank} \nКоличество верных ответов: {self.points}', create_menu(),
-                           f'users-image\\user{self._USER_ID}.jpg')
+                           f'users-image/user{self._USER_ID}.jpg')
         return False
 
     def write_msg(self, message, keyboard=None, image=None):
