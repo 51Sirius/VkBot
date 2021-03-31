@@ -69,16 +69,15 @@ class VkBot:
         elif self.message == self._COMMANDS[10]:
             avatar_url = parser_space.parsing_avatar(self._USER_ID)
             save_image(avatar_url, self._USER_ID)
-            circle_crop(image_url=f'users-image\\avatar{self._USER_ID}.jpg')
             if self.points < 20:
                 rank = 'Новичок'
             elif 20 <= self.points < 100:
                 rank = 'Звездочет'
-            elif self.points >=100:
+            elif self.points >= 100:
                 rank = 'Космонавт'
             else:
                 rank = 'Призыватель душ'
-            write_text(self.points, "users-image\\maim_bg.jpg", rank, self._USER_ID)
+            write_text(self.points, "users-image\\bg.jpg", rank, self._USER_ID)
             paste_image(f"users-image\\bg{self._USER_ID}.jpg", f'users-image\\avatar{self._USER_ID}.jpg', self._USER_ID)
         return False
 
