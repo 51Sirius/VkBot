@@ -25,9 +25,9 @@ def write_text(amount_answers, image_url, rank, user_id):
         draw = ImageDraw.Draw(image)
         text_answers = f"Кол-во ответов: {amount_answers}"
         text_rank = f"Звание: {rank}"
-        font = ImageFont.truetype("arial.ttf", size=14)
-        draw.text((140, 30), text_answers, font=font)
-        draw.text((140, 60), text_rank, font=font)
+        font = ImageFont.truetype("arial.ttf", size=30)
+        draw.text((440, 100), text_answers, font=font)
+        draw.text((440, 200), text_rank, font=font)
         image.save(f"users-image\\bg{user_id}.jpg")
     except Exception as e:
         print(f"[ERROR] {e}")
