@@ -40,6 +40,8 @@ def paste_image(first, second, id_user):
     im1.save(f'users-image\\user{id_user}.jpg', quality=75)
     im1.close()
     im2.close()
+    os.remove(f'users-image\\avatar{id_user}.jpg')
+    os.remove(f'users-image\\bg{id_user}.jpg')
 
 
 def save_image(url, id_user):
@@ -47,5 +49,6 @@ def save_image(url, id_user):
     img = Image.open(resp)
     img.save(f'users-image\\avatar{id_user}.png', 'png')
     img = Image.open(f'users-image\\avatar{id_user}.png')
+    img = img.resize((300, 300), Image.ANTIALIAS)
     img.save(f'users-image\\avatar{id_user}.jpg', 'jpeg')
     os.remove(f'users-image\\avatar{id_user}.png')
