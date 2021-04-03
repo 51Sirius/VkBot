@@ -9,15 +9,13 @@ import time
 import requests
 
 
+vk_session = vk_api.VkApi(token=cfg.TOKEN)
+users_quest = {1: []}
+conn = sqlite3.connect("database.sqlite")
+cursor = conn.cursor()
+logging.basicConfig(level=logging.INFO, filename=u'logs.log')
 try:
-    vk_session = vk_api.VkApi(token=cfg.TOKEN)
     long_poll = VkLongPoll(vk_session)
-    users_quest = {1: []
-                   }
-    conn = sqlite3.connect("database.sqlite")
-    cursor = conn.cursor()
-    logging.basicConfig(level=logging.INFO, filename=u'logs.log')
-
     for event in long_poll.listen():
         if event.type == VkEventType.MESSAGE_NEW:
             if event.to_me:
