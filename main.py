@@ -36,7 +36,7 @@ while True:
                         point = 0
                     try:
                         bot = VkBot(event.user_id, message, vk_session, point)
-                        logging.info(f'Created bot for {event.user_id}')
+                        logging.info(f'Created bot for {event.user_id} {bot._USERNAME}')
                         if users_quest.get(event.user_id) is not None:
                             answer = users_quest.get(event.user_id)[0]
                             cont = bot.answer_session(answer)
