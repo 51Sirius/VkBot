@@ -8,7 +8,7 @@ from functionsAndClass.images import *
 
 
 class VkBot:
-    def __init__(self, user_id, message, session, point, first):
+    def __init__(self, user_id, message: str, session, point, first):
         self.first = first
         self.Upload = vk_api.VkUpload(session)
         self.answer = None
@@ -86,8 +86,12 @@ class VkBot:
             paste_image(f"users-image/bg{self._USER_ID}.jpg", f'users-image/avatar{self._USER_ID}.jpg', self._USER_ID)
             self.write_msg(f'Ваш ранк: {rank} \nКоличество верных ответов: {self.points}', create_menu(),
                            f'users-image/user{self._USER_ID}.jpg')
+        elif self.message == 'Инструкция':
+            self.write_msg(
+                'Список команд:\n1.Факты о космосе - Факты\n2.Викторина - Викторина\n3.Случайное созвездие - Созвездия\
+                \n4.Специальная аватарка - Профиль')
         else:
-            self.write_msg('Комманда была некоректной. Если вы хотите получить список команд, то напишите "Инструкция"',
+            self.write_msg('Команда была некорректной. Если вы хотите получить список команд, то напишите "Инструкция"',
                            create_menu())
         return False
 
