@@ -8,7 +8,8 @@ from functionsAndClass.images import *
 
 
 class VkBot:
-    def __init__(self, user_id, message, session, point):
+    def __init__(self, user_id, message, session, point, first):
+        self.first = first
         self.Upload = vk_api.VkUpload(session)
         self.answer = None
         self.wrong_answers = []
@@ -52,7 +53,8 @@ class VkBot:
                 self.write_msg(parser_space.parsing_facts())
                 self.write_msg('\nЕще фактов?', create_yes_or_no(self._COMMANDS[1], self._COMMANDS[4]))
             except:
-                self.write_msg('Произошла ошибка, попробуйте еще раз.', create_yes_or_no(self._COMMANDS[1], self._COMMANDS[4]))
+                self.write_msg('Произошла ошибка, попробуйте еще раз.',
+                               create_yes_or_no(self._COMMANDS[1], self._COMMANDS[4]))
         elif self.message == self._COMMANDS[6] or self.message == self._COMMANDS[2]:
             quest, answers = give_question()
             keyboard, true_answer = generate_answers_button(answers)
@@ -84,6 +86,9 @@ class VkBot:
             paste_image(f"users-image/bg{self._USER_ID}.jpg", f'users-image/avatar{self._USER_ID}.jpg', self._USER_ID)
             self.write_msg(f'Ваш ранк: {rank} \nКоличество верных ответов: {self.points}', create_menu(),
                            f'users-image/user{self._USER_ID}.jpg')
+        else:
+            self.write_msg('Комманда была некоректной. Если вы хотите получить список команд, то напишите "Инструкция"',
+                           create_menu())
         return False
 
     def write_msg(self, message, keyboard=None, image=None):

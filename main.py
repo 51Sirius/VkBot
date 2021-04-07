@@ -18,6 +18,7 @@ while True:
         long_poll = VkLongPoll(vk_session)
         for event in long_poll.listen():
             if event.type == VkEventType.MESSAGE_NEW:
+                first = False
                 if event.to_me:
                     try:
                         message = event.text
@@ -29,13 +30,14 @@ while True:
                         if cursor.fetchone() is None:
                             cursor.execute("INSERT INTO users(vk_id) VALUES (?)", (event.user_id,))
                             conn.commit()
+                            first = True
                         cursor.execute("SELECT quest_amount FROM users WHERE vk_id=?", (event.user_id,))
                         point = cursor.fetchone()[0]
                     except Exception as exc:
                         logging.error(exc)
                         point = 0
                     try:
-                        bot = VkBot(event.user_id, message, vk_session, point)
+                        bot = VkBot(event.user_id, message, vk_session, point, first)
                         logging.info(f'Created bot for {event.user_id} {bot._USERNAME}')
                         if users_quest.get(event.user_id) is not None:
                             answer = users_quest.get(event.user_id)[0]
