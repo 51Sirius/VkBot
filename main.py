@@ -52,5 +52,5 @@ while True:
                     except Exception as exc:
                         logging.error(exc)
     except Exception as e:
-        print(f"{e[0:40]}")
+        print(e)
         time.sleep(3)
