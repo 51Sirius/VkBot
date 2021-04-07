@@ -46,10 +46,13 @@ class VkBot:
         if self.message == self._COMMANDS[0] or self.message == 'привет' or self.message == 'Привет':
             self.write_msg('Привет! Рад тебя видеть. Не хочешь немного фактов о космосе?',
                            create_yes_or_no(self._COMMANDS[1], self._COMMANDS[3]))
-        elif self.message == self._COMMANDS[1] or self.message == self._COMMANDS[5]:
+        elif self.message == self._COMMANDS[1] or self.message == self._COMMANDS[5] or self.message == 'Да':
             self.write_msg('Подождите секундочку...')
-            self.write_msg(parser_space.parsing_facts())
-            self.write_msg('\nЕще фактов?', create_yes_or_no(self._COMMANDS[1], self._COMMANDS[4]))
+            try:
+                self.write_msg(parser_space.parsing_facts())
+                self.write_msg('\nЕще фактов?', create_yes_or_no(self._COMMANDS[1], self._COMMANDS[4]))
+            except:
+                self.write_msg('Произошла ошибка, попробуйте еще раз.', create_yes_or_no(self._COMMANDS[1], self._COMMANDS[4]))
         elif self.message == self._COMMANDS[6] or self.message == self._COMMANDS[2]:
             quest, answers = give_question()
             keyboard, true_answer = generate_answers_button(answers)
