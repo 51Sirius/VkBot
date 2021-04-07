@@ -17,7 +17,7 @@ class VkBot:
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id()
         self._COMMANDS = ["Привет!", "Да, хочу", 'Ещё!', "Не, я и так крут!", "Нет, спасибо", 'Факты', 'Викторина',
-                          'Хватит', 'Меню', 'Созвездия', 'Аватар']
+                          'Хватит', 'Меню', 'Созвездия', 'Профиль']
         print(f'Create bot for {self._USERNAME} / {self._USER_ID}')
         self.points = point
 
@@ -44,7 +44,7 @@ class VkBot:
 
     def command(self):
         if self.message == self._COMMANDS[0] or self.message == 'привет' or self.message == 'Привет':
-            self.write_msg('Привет рад тебя видеть. Не хочешь немного фактов о космосе?',
+            self.write_msg('Привет! Рад тебя видеть. Не хочешь немного фактов о космосе?',
                            create_yes_or_no(self._COMMANDS[1], self._COMMANDS[3]))
         elif self.message == self._COMMANDS[1] or self.message == self._COMMANDS[5]:
             self.write_msg('Подождите секундочку...')
