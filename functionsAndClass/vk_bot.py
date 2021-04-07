@@ -44,7 +44,7 @@ class VkBot:
 
     def command(self):
         if self.message == self._COMMANDS[0] or self.message == 'привет' or self.message == 'Привет':
-            self.write_msg('Привет! Рад тебя видеть. Не хочешь не ного фактов о космосе?',
+            self.write_msg('Привет! Рад тебя видеть. Хочешь не ного фактов о космосе?',
                            create_yes_or_no(self._COMMANDS[1], self._COMMANDS[3]))
         elif self.message == self._COMMANDS[1] or self.message == self._COMMANDS[5] or self.message == 'Да':
             self.write_msg('Подождите секундочку...')
