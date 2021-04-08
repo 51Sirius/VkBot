@@ -67,8 +67,9 @@ def give_space():
     return constellations_list[r]
 
 
-def parsing_avatar(id_vk):
+def parsing_avatar(id_vk, name):
     req = requests.get(f'https://vk.com/id{id_vk}')
     bs: bs4.BeautifulSoup = bs4.BeautifulSoup(req.text, "html.parser")
     link: bs4.element.Tag = bs.findAll('img', attrs={'class': 'pp_img'})[0].get('src', '-')  # url -> img 100x100
+    print(link, name, sep='\n')
     return link

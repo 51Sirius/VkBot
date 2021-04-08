@@ -72,7 +72,7 @@ class VkBot:
         elif self.message == 'Еще что-то':
             self.write_msg('Это тестовое поле его лучше пока не трогать)', create_menu())
         elif self.message == self._COMMANDS[10]:
-            avatar_url = parser_space.parsing_avatar(self._USER_ID)
+            avatar_url = parser_space.parsing_avatar(self._USER_ID, self._USERNAME)
             save_image(avatar_url, self._USER_ID)
             if self.points < 20:
                 rank = 'Новичок'
