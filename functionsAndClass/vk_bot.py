@@ -85,7 +85,7 @@ class VkBot:
             write_text(self.points, "users-image/bg.jpg", rank, self._USER_ID)
             paste_image(f"users-image/bg{self._USER_ID}.jpg", f'users-image/avatar{self._USER_ID}.jpg', self._USER_ID)
             if hide:
-                ms = 'Ваша страница была скрыта, поэтому мы не смогли получить фотографию.'
+                ms = 'К сожалению, у Вас закрытый профиль, поэтому мы не смогли получить фотографию 😢'
             else:
                 ms = None
             self.write_msg(f'Ваш ранк: {rank} \nКоличество верных ответов: {self.points}\n' + ms, create_menu(),
