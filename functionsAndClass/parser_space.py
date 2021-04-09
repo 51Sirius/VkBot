@@ -68,7 +68,11 @@ def give_space():
 
 
 def parsing_avatar(id_vk):
+    hide = False
     req = requests.get(f'https://vk.com/id{id_vk}')
     bs: bs4.BeautifulSoup = bs4.BeautifulSoup(req.text, "html.parser")
     link: bs4.element.Tag = bs.findAll('img', attrs={'class': 'pp_img'})[0].get('src', '-')  # url -> img 100x100
-    return link
+    if '/images/deactivated' in link:
+        link = 'https://pbs.twimg.com/media/DlgSlIgXgAA7Oil.jpg'
+        hide = True
+    return link, hide

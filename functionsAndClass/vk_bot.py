@@ -72,7 +72,7 @@ class VkBot:
         elif self.message == 'Еще что-то':
             self.write_msg('Это тестовое поле его лучше пока не трогать)', create_menu())
         elif self.message == self._COMMANDS[10]:
-            avatar_url = parser_space.parsing_avatar(self._USER_ID)
+            avatar_url, hide = parser_space.parsing_avatar(self._USER_ID)
             save_image(avatar_url, self._USER_ID)
             if self.points < 20:
                 rank = 'Новичок'
@@ -84,7 +84,11 @@ class VkBot:
                 rank = 'Призыватель душ'
             write_text(self.points, "users-image/bg.jpg", rank, self._USER_ID)
             paste_image(f"users-image/bg{self._USER_ID}.jpg", f'users-image/avatar{self._USER_ID}.jpg', self._USER_ID)
-            self.write_msg(f'Ваш ранк: {rank} \nКоличество верных ответов: {self.points}', create_menu(),
+            if hide:
+                ms = 'Ваша страница была скрыта, поэтому мы не смогли получить фотографию.'
+            else:
+                ms = None
+            self.write_msg(f'Ваш ранк: {rank} \nКоличество верных ответов: {self.points}\n' + ms, create_menu(),
                            f'users-image/user{self._USER_ID}.jpg')
         elif self.message == 'Инструкция':
             self.write_msg(
