@@ -74,12 +74,14 @@ class VkBot:
         elif self.message == self._COMMANDS[10]:
             avatar_url, hide = parser_space.parsing_avatar(self._USER_ID)
             save_image(avatar_url, self._USER_ID)
-            if self.points < 20:
+            if self.points < 10:
                 rank = 'Новичок'
-            elif 20 <= self.points < 100:
+            elif 10 <= self.points < 50:
                 rank = 'Звездочет'
-            elif self.points >= 100:
+            elif 50 <= self.points <= 100:
                 rank = 'Космонавт'
+            elif 100 < self.points <= 300:
+                rank = 'Пришелец'
             else:
                 rank = 'Призыватель душ'
             write_text(self.points, "users-image/bg.jpg", rank, self._USER_ID)
