@@ -5,6 +5,7 @@ from functionsAndClass.key_1 import *
 from functionsAndClass import parser_space
 from functionsAndClass.questions import give_question
 from functionsAndClass.images import *
+import sqlite3
 
 
 class VkBot:
@@ -74,6 +75,7 @@ class VkBot:
         elif self.message == self._COMMANDS[10]:
             avatar_url, hide = parser_space.parsing_avatar(self._USER_ID)
             save_image(avatar_url, self._USER_ID)
+            print('Complete save')
             if self.points < 20:
                 rank = 'Новичок'
             elif 20 <= self.points < 100:
@@ -87,7 +89,7 @@ class VkBot:
             if hide:
                 ms = 'К сожалению, у Вас закрытый профиль, поэтому мы не смогли получить фотографию 😢'
             else:
-                ms = None
+                ms = ''
             self.write_msg(f'Ваш ранк: {rank} \nКоличество верных ответов: {self.points}\n' + ms, create_menu(),
                            f'users-image/user{self._USER_ID}.jpg')
         elif self.message == 'Инструкция':
@@ -97,6 +99,8 @@ class VkBot:
                  Вконтакте. На некоторых устройствах для их активации необходимо нажать на квадрат рядом с полем ввода\
                 текста.',
                 create_menu())
+        elif self.message == 'Рейтинг':
+            pass
         else:
             self.write_msg(
                 'Команда была некорректной.\n Если вы хотите получить список команд, то напишите "Инструкция"',

@@ -25,6 +25,7 @@ def create_menu():
     keyboard.add_button('Профиль', color=VkKeyboardColor.PRIMARY)
     keyboard.add_line()
     keyboard.add_button('Инструкция', color=VkKeyboardColor.PRIMARY)
+    #keyboard.add_button('Рейтинг', color=VkKeyboardColor.PRIMARY)
     return keyboard
 
 
