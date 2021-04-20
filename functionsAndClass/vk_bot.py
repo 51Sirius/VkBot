@@ -90,7 +90,7 @@ class VkBot:
                 ms = 'К сожалению, у Вас закрытый профиль, поэтому мы не смогли получить фотографию 😢'
             else:
                 ms = ''
-            self.write_msg(f'Ваш ранк: {rank} \nКоличество верных ответов: {self.points}\n' + ms, create_menu(),
+            self.write_msg(f'Ваш ранг: {rank} \nКоличество верных ответов: {self.points}\n' + ms, create_menu(),
                            f'users-image/user{self._USER_ID}.jpg')
         elif self.message == 'Инструкция':
             self.write_msg(
